@@ -66,7 +66,7 @@
 
         .input-field {
             flex: 1;
-            min-width: 250px;
+            min-width: 200px;
             display: flex;
             flex-direction: column;
             gap: 0.5rem;
@@ -97,6 +97,31 @@
             padding: 1rem;
             margin-bottom: 2rem;
             border-radius: 4px;
+        }
+
+        /* Đồng hồ bấm giờ */
+        .timer-box {
+            background-color: #fff2f2;
+            border: 2px solid #ffcccc;
+            color: #d63031;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            border-radius: 6px;
+            text-align: center;
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+        #timer {
+            font-size: 1.8rem;
+            display: block;
+            margin-top: 0.25rem;
+        }
+        .timer-urgent {
+            color: #c0392b !important;
+            animation: blinker 1s linear infinite;
+        }
+        @keyframes blinker {
+            50% { opacity: 0.3; }
         }
 
         .section-title {
@@ -236,7 +261,7 @@
 
     <div class="container">
         
-        <div class="student-info-panel">
+        <div class="student-info-panel" id="studentPanel">
             <h3>THÔNG TIN HỌC SINH</h3>
             <div class="input-group">
                 <div class="input-field">
@@ -247,6 +272,10 @@
                     <label for="studentClass">Lớp học:</label>
                     <input type="text" id="studentClass" placeholder="Nhập tên lớp (Ví dụ: K19-N01)...">
                 </div>
+                <div class="input-field">
+                    <label for="studentEmail">Email sinh viên:</label>
+                    <input type="email" id="studentEmail" placeholder="Nhập địa chỉ email...">
+                </div>
             </div>
         </div>
         
@@ -255,13 +284,18 @@
             1. 听力 (Nghe hiểu): 35 câu, khoảng 25 phút.<br>
             2. 阅读 (Đọc hiểu): 25 câu, 22 phút.<br>
             3. Mỗi đáp án đúng được <strong>2 điểm</strong>. Tổng điểm tuyệt đối: <strong>120 điểm</strong>.<br>
-            <small style="color: #c0392b; font-weight: bold;">*Lưu ý: Hệ thống yêu cầu hoàn thành tất cả các câu hỏi mới có thể nhấn nút nộp bài.</small>
+            <small style="color: #c0392b; font-weight: bold;">*Lưu ý: Hệ thống yêu cầu điền đầy đủ thông tin cá nhân và hoàn thành tất cả các câu hỏi mới có thể nhấn nút nộp bài.</small>
+        </div>
+
+        <div class="timer-box" id="timerBox">
+            ⏱ THỜI GIAN LÀM BÀI CÒN LẠI:
+            <span id="timer">45:00</span>
         </div>
 
         <div id="resultBox" class="result-box">
             <h2>KẾT QUẢ BÀI LÀM</h2>
             <div id="scoreText" class="score-display">0 / 120</div>
-            <p id="studentDisplay" style="font-size: 1.2rem; font-weight: bold; color: #34495e;"></p>
+            <p id="studentDisplay" style="font-size: 1.1rem; font-weight: bold; color: #34495e; line-height: 1.8;"></p>
             <p id="evaluationText"></p>
         </div>
 
@@ -482,615 +516,4 @@
                 <div class="q-header"><span>第 21 题</span></div>
                 <p><strong>问: 男的想做什么?</strong></p>
                 <div class="options-group">
-                    <label class="option-label"><input type="radio" name="q21" value="A"> A 学习</label>
-                    <label class="option-label"><input type="radio" name="q21" value="B"> B 运动</label>
-                    <label class="option-label"><input type="radio" name="q21" value="C"> C 跳舞</label>
-                </div>
-                <div class="feedback" id="fb-21"></div>
-            </div>
-
-            <div class="card" data-q="22">
-                <div class="q-header"><span>第 22 题</span></div>
-                <p><strong>问: 这个商店的东西怎么样?</strong></p>
-                <div class="options-group">
-                    <label class="option-label"><input type="radio" name="q22" value="A"> A 很贵</label>
-                    <label class="option-label"><input type="radio" name="q22" value="B"> B 很便宜</label>
-                    <label class="option-label"><input type="radio" name="q22" value="C"> C 不好找</label>
-                </div>
-                <div class="feedback" id="fb-22"></div>
-            </div>
-
-            <div class="card" data-q="23">
-                <div class="q-header"><span>第 23 题</span></div>
-                <p><strong>问: 现在几点了?</strong></p>
-                <div class="options-group">
-                    <label class="option-label"><input type="radio" name="q23" value="A"> A 8点30分</label>
-                    <label class="option-label"><input type="radio" name="q23" value="B"> B 8点40分</label>
-                    <label class="option-label"><input type="radio" name="q23" value="C"> C 8点50分</label>
-                </div>
-                <div class="feedback" id="fb-23"></div>
-            </div>
-
-            <div class="card" data-q="24">
-                <div class="q-header"><span>第 24 题</span></div>
-                <p><strong>问: 说话人最可能在哪儿?</strong></p>
-                <div class="options-group">
-                    <label class="option-label"><input type="radio" name="q24" value="A"> A 教室</label>
-                    <label class="option-label"><input type="radio" name="q24" value="B"> B 商店</label>
-                    <label class="option-label"><input type="radio" name="q24" value="C"> C 医院</label>
-                </div>
-                <div class="feedback" id="fb-24"></div>
-            </div>
-
-            <div class="card" data-q="25">
-                <div class="q-header"><span>第 25 题</span></div>
-                <p><strong>问: 明天是谁的生日?</strong></p>
-                <div class="options-group">
-                    <label class="option-label"><input type="radio" name="q25" value="A"> A 他妹妹</label>
-                    <label class="option-label"><input type="radio" name="q25" value="B"> B 他弟弟</label>
-                    <label class="option-label"><input type="radio" name="q25" value="C"> C 他儿子</label>
-                </div>
-                <div class="feedback" id="fb-25"></div>
-            </div>
-
-            <div class="card" data-q="26">
-                <div class="q-header"><span>第 26 题</span></div>
-                <p><strong>问: 男 of 向服务员要什么?</strong></p>
-                <div class="options-group">
-                    <label class="option-label"><input type="radio" name="q26" value="A"> A 菜</label>
-                    <label class="option-label"><input type="radio" name="q26" value="B"> B 米饭</label>
-                    <label class="option-label"><input type="radio" name="q26" value="C"> C 水果</label>
-                </div>
-                <div class="feedback" id="fb-26"></div>
-            </div>
-
-            <div class="card" data-q="27">
-                <div class="q-header"><span>第 27 题</span></div>
-                <p><strong>问: 男的为什么给女的打电话?</strong></p>
-                <div class="options-group">
-                    <label class="option-label"><input type="radio" name="q27" value="A"> A 想唱歌</label>
-                    <label class="option-label"><input type="radio" name="q27" value="B"> B 想看电视</label>
-                    <label class="option-label"><input type="radio" name="q27" value="C"> C 想看电影</label>
-                </div>
-                <div class="feedback" id="fb-27"></div>
-            </div>
-
-            <div class="card" data-q="28">
-                <div class="q-header"><span>第 28 题</span></div>
-                <p><strong>问: 男的在找什么?</strong></p>
-                <div class="options-group">
-                    <label class="option-label"><input type="radio" name="q28" value="A"> A 手机</label>
-                    <label class="option-label"><input type="radio" name="q28" value="B"> B 手表</label>
-                    <label class="option-label"><input type="radio" name="q28" value="C"> C 自自行车</label>
-                </div>
-                <div class="feedback" id="fb-28"></div>
-            </div>
-
-            <div class="card" data-q="29">
-                <div class="q-header"><span>第 29 题</span></div>
-                <p><strong>问: 车是谁送的?</strong></p>
-                <div class="options-group">
-                    <label class="option-label"><input type="radio" name="q29" value="A"> A 姐姐</label>
-                    <label class="option-label"><input type="radio" name="q29" value="B"> B 朋友</label>
-                    <label class="option-label"><input type="radio" name="q29" value="C"> C 同学</label>
-                </div>
-                <div class="feedback" id="fb-29"></div>
-            </div>
-
-            <div class="card" data-q="30">
-                <div class="q-header"><span>第 30 题</span></div>
-                <p><strong>问: 女的是什么意思?</strong></p>
-                <div class="options-group">
-                    <label class="option-label"><input type="radio" name="q30" value="A"> A 不想回家</label>
-                    <label class="option-label"><input type="radio" name="q30" value="B"> B 不认识路</label>
-                    <label class="option-label"><input type="radio" name="q30" value="C"> C 住得不远</label>
-                </div>
-                <div class="feedback" id="fb-30"></div>
-            </div>
-
-
-            <div class="part-title">### 第四部分 (Phần 4): Nghe hội thoại dài và chọn đáp án chính xác</div>
-            
-            <div class="card" data-q="31">
-                <div class="q-header"><span>第 31 题</span></div>
-                <p><strong>问: 那两个外国学生的汉语怎么样?</strong></p>
-                <div class="options-group">
-                    <label class="option-label"><input type="radio" name="q31" value="A"> A 不会说</label>
-                    <label class="option-label"><input type="radio" name="q31" value="B"> B 不太好</label>
-                    <label class="option-label"><input type="radio" name="q31" value="C"> C 非常好</label>
-                </div>
-                <div class="feedback" id="fb-31"></div>
-            </div>
-
-            <div class="card" data-q="32">
-                <div class="q-header"><span>第 32 题</span></div>
-                <p><strong>问: 女的想请男的做什么?</strong></p>
-                <div class="options-group">
-                    <label class="option-label"><input type="radio" name="q32" value="A"> A 送她</label>
-                    <label class="option-label"><input type="radio" name="q32" value="B"> B 去北京</label>
-                    <label class="option-label"><input type="radio" name="q32" value="C"> C 叫...起床</label>
-                </div>
-                <div class="feedback" id="fb-32"></div>
-            </div>
-
-            <div class="card" data-q="33">
-                <div class="q-header"><span>第 33 题</span></div>
-                <p><strong>问: 女的是什么意思?</strong></p>
-                <div class="options-group">
-                    <label class="option-label"><input type="radio" name="q33" value="A"> A 多买些</label>
-                    <label class="option-label"><input type="radio" name="q33" value="B"> B 少买些</label>
-                    <label class="option-label"><input type="radio" name="q33" value="C"> C 别卖了</label>
-                </div>
-                <div class="feedback" id="fb-33"></div>
-            </div>
-
-            <div class="card" data-q="34">
-                <div class="q-header"><span>第 34 题</span></div>
-                <p><strong>问: 女的怎么了?</strong></p>
-                <div class="options-group">
-                    <label class="option-label"><input type="radio" name="q34" value="A"> A 生病了</label>
-                    <label class="option-label"><input type="radio" name="q34" value="B"> B 回答错了</label>
-                    <label class="option-label"><input type="radio" name="q34" value="C"> C 打错电话了</label>
-                </div>
-                <div class="feedback" id="fb-34"></div>
-            </div>
-
-            <div class="card" data-q="35">
-                <div class="q-header"><span>第 35 题</span></div>
-                <p><strong>问: 今天下午谁要来?</strong></p>
-                <div class="options-group">
-                    <label class="option-label"><input type="radio" name="q35" value="A"> A 同学</label>
-                    <label class="option-label"><input type="radio" name="q35" value="B"> B 老师</label>
-                    <label class="option-label"><input type="radio" name="q35" value="C"> C 医生</label>
-                </div>
-                <div class="feedback" id="fb-35"></div>
-            </div>
-
-
-            <div class="section-title"><h2>二、阅读 (Phần Đọc)</h2></div>
-
-            <div class="part-title">### 第一部分 (Phần 1): Ghép câu văn với tranh tương ứng (A - F)</div>
-
-            <div class="card" data-q="36">
-                <div class="q-header"><span>第 36 题</span></div>
-                <p>36. 雨不下了,天晴了。</p>
-                <div class="options-group">
-                    <select name="q36" style="padding: 0.5rem; font-size: 1rem;">
-                        <option value="">-- Chọn bức tranh --</option>
-                        <option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option>
-                    </select>
-                </div>
-                <div class="feedback" id="fb-36"></div>
-            </div>
-
-            <div class="card" data-q="37">
-                <div class="q-header"><span>第 37 题</span></div>
-                <p>37. 他给女朋友买了一个新手机。</p>
-                <div class="options-group">
-                    <select name="q37" style="padding: 0.5rem; font-size: 1rem;">
-                        <option value="">-- Chọn bức tranh --</option>
-                        <option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option>
-                    </select>
-                </div>
-                <div class="feedback" id="fb-37"></div>
-            </div>
-
-            <div class="card" data-q="38">
-                <div class="q-header"><span>第 38 题</span></div>
-                <p>38. 准备好了吗?好,笑一笑。</p>
-                <div class="options-group">
-                    <select name="q38" style="padding: 0.5rem; font-size: 1rem;">
-                        <option value="">-- Chọn bức tranh --</option>
-                        <option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option>
-                    </select>
-                </div>
-                <div class="feedback" id="fb-38"></div>
-            </div>
-
-            <div class="card" data-q="39">
-                <div class="q-header"><span>第 39 题</span></div>
-                <p>39. 非常欢迎你来我们公司工作!</p>
-                <div class="options-group">
-                    <select name="q39" style="padding: 0.5rem; font-size: 1rem;">
-                        <option value="">-- Chọn bức tranh --</option>
-                        <option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option>
-                    </select>
-                </div>
-                <div class="feedback" id="fb-39"></div>
-            </div>
-
-            <div class="card" data-q="40">
-                <div class="q-header"><span>第 40 题</span></div>
-                <p>40. 每天早上她都要慢跑一小时。</p>
-                <div class="options-group">
-                    <select name="q40" style="padding: 0.5rem; font-size: 1rem;">
-                        <option value="">-- Chọn bức tranh --</option>
-                        <option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option>
-                    </select>
-                </div>
-                <div class="feedback" id="fb-40"></div>
-            </div>
-
-
-            <div class="part-title">### 第二部分 (Phần 2): Chọn từ thích hợp điền vào chỗ trống</div>
-            <div class="options-group" style="flex-direction: row; gap: 1.5rem; margin-bottom: 1rem; font-weight: bold; background: #e2e8f0; padding: 0.75rem; border-radius: 6px;">
-                <span>A 得</span> <span>B 帮助</span> <span>C 鼻子</span> <span>D 贵</span> <span>E 虽然</span> <span>F 导游</span>
-            </div>
-
-            <div class="card" data-q="41">
-                <div class="q-header"><span>第 41 题</span></div>
-                <p>41. 我最近感冒了, ( ______ ) 不通气, 很难受。</p>
-                <div class="options-group">
-                    <select name="q41" style="padding: 0.5rem; font-size: 1rem;">
-                        <option value="">-- Chọn từ thích hợp --</option>
-                        <option value="A">A 得</option><option value="B">B 帮助</option><option value="C">C 鼻子</option><option value="D">D 贵</option><option value="E">E 虽然</option><option value="F">F 导游</option>
-                    </select>
-                </div>
-                <div class="feedback" id="fb-41"></div>
-            </div>
-
-            <div class="card" data-q="42">
-                <div class="q-header"><span>第 42 题</span></div>
-                <p>42. 我明天就走了, 这几天谢谢大家的 ( ______ )。</p>
-                <div class="options-group">
-                    <select name="q42" style="padding: 0.5rem; font-size: 1rem;">
-                        <option value="">-- Chọn từ thích hợp --</option>
-                        <option value="A">A 得</option><option value="B">B 帮助</option><option value="C">C 鼻子</option><option value="D">D 贵</option><option value="E">E 虽然</option><option value="F">F 导游</option>
-                    </select>
-                </div>
-                <div class="feedback" id="fb-42"></div>
-            </div>
-
-            <div class="card" data-q="43">
-                <div class="q-header"><span>第 43 题</span></div>
-                <p>43. 右边这个字我 ( ______ ) 会读, 但是不会写。</p>
-                <div class="options-group">
-                    <select name="q43" style="padding: 0.5rem; font-size: 1rem;">
-                        <option value="">-- Chọn từ thích hợp --</option>
-                        <option value="A">A 得</option><option value="B">B 帮助</option><option value="C">C 鼻子</option><option value="D">D 贵</option><option value="E">E 虽然</option><option value="F">F 导游</option>
-                    </select>
-                </div>
-                <div class="feedback" id="fb-43"></div>
-            </div>
-
-            <div class="card" data-q="44">
-                <div class="q-header"><span>第 44 题</span></div>
-                <p>44. 如果你想去北京旅游, 我可以给你当 ( ______ )。</p>
-                <div class="options-group">
-                    <select name="q44" style="padding: 0.5rem; font-size: 1rem;">
-                        <option value="">-- Chọn từ thích hợp --</option>
-                        <option value="A">A 得</option><option value="B">B 帮助</option><option value="C">C 鼻子</option><option value="D">D 贵</option><option value="E">E 虽然</option><option value="F">F 导游</option>
-                    </select>
-                </div>
-                <div class="feedback" id="fb-44"></div>
-            </div>
-
-            <div class="card" data-q="45">
-                <div class="q-header"><span>第 45 题</span></div>
-                <p>45. 妹妹昨天睡 ( ______ ) 很晚, 所以现在不想起床。</p>
-                <div class="options-group">
-                    <select name="q45" style="padding: 0.5rem; font-size: 1rem;">
-                        <option value="">-- Chọn từ thích hợp --</option>
-                        <option value="A">A 得</option><option value="B">B 帮助</option><option value="C">C 鼻子</option><option value="D">D 贵</option><option value="E">E 虽然</option><option value="F">F 导游</option>
-                    </select>
-                </div>
-                <div class="feedback" id="fb-45"></div>
-            </div>
-
-
-            <div class="part-title">### 第三部分 (Phần 3): Đọc đoạn văn ngắn và phán đoán Đúng (✓) / Sai (X)</div>
-            
-            <div class="card" data-q="46">
-                <div class="q-header"><span>第 46 题</span></div>
-                <p>“您请进, 这就是我的家。这个房间是我和我丈夫的, 旁边那个小的是孩子的房间。”<br>
-                <strong>★ 我们的房间比孩子的大。</strong></p>
-                <div class="options-group">
-                    <label class="option-label"><input type="radio" name="q46" value="✓"> 正确 (Đúng ✓)</label>
-                    <label class="option-label"><input type="radio" name="q46" value="X"> 错误 (Sai X)</label>
-                </div>
-                <div class="feedback" id="fb-46"></div>
-            </div>
-
-            <div class="card" data-q="47">
-                <div class="q-header"><span>第 47 题</span></div>
-                <p>“我爸爸不爱喝咖啡, 他喜欢喝茶, 每天上午都会喝几杯热茶。”<br>
-                <strong>★ 爸爸觉得茶不好喝。</strong></p>
-                <div class="options-group">
-                    <label class="option-label"><input type="radio" name="q47" value="✓"> 正确 (Đúng ✓)</label>
-                    <label class="option-label"><input type="radio" name="q47" value="X"> 错误 (Sai X)</label>
-                </div>
-                <div class="feedback" id="fb-47"></div>
-            </div>
-
-            <div class="card" data-q="48">
-                <div class="q-header"><span>第 48 题</span></div>
-                <p>“他在火车站工作, 每天都很忙, 但他很少说累, 他觉得能帮助人们是他最大的快乐。”<br>
-                <strong>★ 他很喜欢他的工作。</strong></p>
-                <div class="options-group">
-                    <label class="option-label"><input type="radio" name="q48" value="✓"> 正确 (Đúng ✓)</label>
-                    <label class="option-label"><input type="radio" name="q48" value="X"> 错误 (Sai X)</label>
-                </div>
-                <div class="feedback" id="fb-48"></div>
-            </div>
-
-            <div class="card" data-q="49">
-                <div class="q-header"><span>第 49 题</span></div>
-                <p>“今天下午我要给学生上新课, 但是我现在还没准备好。”<br>
-                <strong>★ 他是老师。</strong></p>
-                <div class="options-group">
-                    <label class="option-label"><input type="radio" name="q49" value="✓"> 正确 (Đúng ✓)</label>
-                    <label class="option-label"><input type="radio" name="q49" value="X"> 错误 (Sai X)</label>
-                </div>
-                <div class="feedback" id="fb-49"></div>
-            </div>
-
-            <div class="card" data-q="50">
-                <div class="q-header"><span>第 50 题</span></div>
-                <p>“我的手表不走了, 不知道出了什么问题, 可能是昨天洗衣服的时候进水了。”<br>
-                <strong>★ 他的手表不见了。</strong></p>
-                <div class="options-group">
-                    <label class="option-label"><input type="radio" name="q50" value="✓"> 正确 (Đúng ✓)</label>
-                    <label class="option-label"><input type="radio" name="q50" value="X"> 错误 (Sai X)</label>
-                </div>
-                <div class="feedback" id="fb-50"></div>
-            </div>
-
-
-            <div class="part-title">### 第四部分 (Phần 4): Ghép cặp câu đối thoại logic (51-55)</div>
-
-            <div class="card" data-q="51">
-                <div class="q-header"><span>第 51 题</span></div>
-                <p>51. 五号是女儿的生日, 她要请同学来家里玩儿。</p>
-                <div class="options-group">
-                    <select name="q51" style="padding: 0.5rem; font-size: 1rem;">
-                        <option value="">-- Chọn phản hồi thích hợp --</option>
-                        <option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option>
-                    </select>
-                </div>
-                <div class="feedback" id="fb-51"></div>
-            </div>
-
-            <div class="card" data-q="52">
-                <div class="q-header"><span>第 52 题</span></div>
-                <p>52. 明天天气好的话, 我们再来打球。</p>
-                <div class="options-group">
-                    <select name="q52" style="padding: 0.5rem; font-size: 1rem;">
-                        <option value="">-- Chọn phản hồi thích hợp --</option>
-                        <option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option>
-                    </select>
-                </div>
-                <div class="feedback" id="fb-52"></div>
-            </div>
-
-            <div class="card" data-q="53">
-                <div class="q-header"><span>第 53 题</span></div>
-                <p>53. 你找谢老师有什么事?</p>
-                <div class="options-group">
-                    <select name="q53" style="padding: 0.5rem; font-size: 1rem;">
-                        <option value="">-- Chọn phản hồi thích hợp --</option>
-                        <option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option>
-                    </select>
-                </div>
-                <div class="feedback" id="fb-53"></div>
-            </div>
-
-            <div class="card" data-q="54">
-                <div class="q-header"><span>第 54 题</span></div>
-                <p>54. 您好, 请问医院怎么走?</p>
-                <div class="options-group">
-                    <select name="q54" style="padding: 0.5rem; font-size: 1rem;">
-                        <option value="">-- Chọn phản hồi thích hợp --</option>
-                        <option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option>
-                    </select>
-                </div>
-                <div class="feedback" id="fb-54"></div>
-            </div>
-
-            <div class="card" data-q="55">
-                <div class="q-header"><span>第 55 题</span></div>
-                <p>55. 没问题, 他是几点的飞机?</p>
-                <div class="options-group">
-                    <select name="q55" style="padding: 0.5rem; font-size: 1rem;">
-                        <option value="">-- Chọn phản hồi thích hợp --</option>
-                        <option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option>
-                    </select>
-                </div>
-                <div class="feedback" id="fb-55"></div>
-            </div>
-
-
-            <div class="part-title">### 第四部分 (Tiếp theo): Ghép cặp câu đối thoại logic (56-60)</div>
-
-            <div class="card" data-q="56">
-                <div class="q-header"><span>第 56 题</span></div>
-                <p>56. 这个您 write 错了, 是“白”, 不是“百”</p>
-                <div class="options-group">
-                    <select name="q56" style="padding: 0.5rem; font-size: 1rem;">
-                        <option value="">-- Chọn phản hồi thích hợp --</option>
-                        <option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option>
-                    </select>
-                </div>
-                <div class="feedback" id="fb-56"></div>
-            </div>
-
-            <div class="card" data-q="57">
-                <div class="q-header"><span>第 57 题</span></div>
-                <p>57. 你要给她介绍一个吗?</p>
-                <div class="options-group">
-                    <select name="q57" style="padding: 0.5rem; font-size: 1rem;">
-                        <option value="">-- Chọn phản hồi thích hợp --</option>
-                        <option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option>
-                    </select>
-                </div>
-                <div class="feedback" id="fb-57"></div>
-            </div>
-
-            <div class="card" data-q="58">
-                <div class="q-header"><span>第 58 题</span></div>
-                <p>58. 对不起, 你认错人了</p>
-                <div class="options-group">
-                    <select name="q58" style="padding: 0.5rem; font-size: 1rem;">
-                        <option value="">-- Chọn phản hồi thích hợp --</option>
-                        <option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option>
-                    </select>
-                </div>
-                <div class="feedback" id="fb-58"></div>
-            </div>
-
-            <div class="card" data-q="59">
-                <div class="q-header"><span>第 59 题</span></div>
-                <p>59. 我爸爸姓刘, 我妈妈姓杨, 所以我叫刘杨</p>
-                <div class="options-group">
-                    <select name="q59" style="padding: 0.5rem; font-size: 1rem;">
-                        <option value="">-- Chọn phản hồi thích hợp --</option>
-                        <option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option>
-                    </select>
-                </div>
-                <div class="feedback" id="fb-59"></div>
-            </div>
-
-            <div class="card" data-q="60">
-                <div class="q-header"><span>第 60 题</span></div>
-                <p>60. 医生说大人一天可以吃4次</p>
-                <div class="options-group">
-                    <select name="q60" style="padding: 0.5rem; font-size: 1rem;">
-                        <option value="">-- Chọn phản hồi thích hợp --</option>
-                        <option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option>
-                    </select>
-                </div>
-                <div class="feedback" id="fb-60"></div>
-            </div>
-
-        </form>
-
-        <div class="submit-area">
-            <button type="button" class="btn" onclick="handleSubmit()">NỘP BÀI & CHẤM ĐIỂM</button>
-        </div>
-    </div>
-
-    <script>
-        const officialAnswers = {
-            1: "✓", 2: "X", 3: "✓", 4: "✓", 5: "✓", 6: "X", 7: "X", 8: "✓", 9: "X", 10: "X", 
-            11: "A", 12: "E", 13: "F", 14: "B", 15: "C",                                    
-            16: "A", 17: "E", 18: "D", 19: "C", 20: "B",                                    
-            21: "B", 22: "A", 23: "B", 24: "B", 25: "C", 26: "A", 27: "C", 28: "A", 29: "B", 30: "C", 
-            31: "C", 32: "A", 33: "B", 34: "C", 35: "A",                                    
-            36: "F", 37: "C", 38: "B", 39: "E", 40: "A",                                    
-            41: "C", 42: "B", 43: "E", 44: "F", 45: "A",                                    
-            46: "✓", 47: "X", 48: "✓", 49: "✓", 50: "X",                                    
-            51: "D", 52: "A", 53: "B", 54: "C", 55: "F",                                    
-            56: "E", 57: "C", 58: "D", 59: "A", 60: "B"                                     
-        };
-
-        // Hàm kiểm tra xem toàn bộ bài tập đã được điền đủ chưa
-        function handleSubmit() {
-            const totalQuestions = 60;
-            let missingQuestions = [];
-
-            // Duyệt kiểm tra trạng thái từng câu hỏi
-            for (let i = 1; i <= totalQuestions; i++) {
-                let isAnswered = false;
-                
-                const radioSelection = document.querySelector(`input[name="q${i}"]:checked`);
-                const selectSelection = document.querySelector(`select[name="q${i}"]`);
-                
-                if (radioSelection && radioSelection.value !== "") {
-                    isAnswered = true;
-                } else if (selectSelection && selectSelection.value !== "") {
-                    isAnswered = true;
-                }
-
-                if (!isAnswered) {
-                    missingQuestions.push(i);
-                }
-            }
-
-            // Nếu có câu chưa điền thì thông báo chặn lại, không chấm điểm
-            if (missingQuestions.length > 0) {
-                alert(`Bạn chưa hoàn thành bài tập!\nVui lòng điền đáp án cho các câu sau: ${missingQuestions.join(', ')}.`);
-                
-                // Tự động tìm câu trống đầu tiên và cuộn màn hình đến đó
-                const firstMissingCard = document.querySelector(`div[data-q="${missingQuestions[0]}"]`);
-                if (firstMissingCard) {
-                    firstMissingCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }
-                return; // Ngắt tiến trình chấm điểm
-            }
-
-            // Nếu bài đã hoàn thành đầy đủ thì thực thi chấm điểm
-            checkAnswers();
-        }
-
-        function checkAnswers() {
-            let totalScore = 0;
-            const pointsPerQuestion = 2;
-            const totalQuestions = 60;
-            
-            // Xử lý thông tin học sinh
-            const sName = document.getElementById('studentName').value.trim();
-            const sClass = document.getElementById('studentClass').value.trim();
-            const studentDisplay = document.getElementById('studentDisplay');
-            
-            if (sName || sClass) {
-                studentDisplay.innerHTML = `Học sinh: ${sName || '...'} | Lớp: ${sClass || '...'}`;
-            } else {
-                studentDisplay.innerHTML = "";
-            }
-
-            // Chấm điểm từng câu
-            for (let i = 1; i <= totalQuestions; i++) {
-                let studentAnswer = "";
-                
-                const radioSelection = document.querySelector(`input[name="q${i}"]:checked`);
-                const selectSelection = document.querySelector(`select[name="q${i}"]`);
-                
-                if (radioSelection) {
-                    studentAnswer = radioSelection.value;
-                } else if (selectSelection) {
-                    studentAnswer = selectSelection.value;
-                }
-
-                const questionCard = document.querySelector(`div[data-q="${i}"]`);
-                const feedbackDiv = document.getElementById(`fb-${i}`);
-                const correctAnswer = officialAnswers[i];
-
-                if (questionCard && feedbackDiv) {
-                    questionCard.classList.remove('correct', 'incorrect');
-                    feedbackDiv.classList.remove('show', 'text-success', 'text-danger');
-
-                    if (studentAnswer === correctAnswer) {
-                        totalScore += pointsPerQuestion;
-                        questionCard.classList.add('correct');
-                        feedbackDiv.innerHTML = `✓ Chính xác! (+2 điểm)`;
-                        feedbackDiv.classList.add('show', 'text-success');
-                    } else {
-                        questionCard.classList.add('incorrect');
-                        feedbackDiv.innerHTML = `✘ Sai rồi. Đáp án đúng là: <strong>${correctAnswer}</strong>`;
-                        feedbackDiv.classList.add('show', 'text-danger');
-                    }
-                }
-            }
-
-            const resultBox = document.getElementById('resultBox');
-            const scoreText = document.getElementById('scoreText');
-            const evaluationText = document.getElementById('evaluationText');
-            
-            resultBox.style.display = 'block';
-            scoreText.innerHTML = `${totalScore} / 120`;
-
-            if(totalScore >= 100) {
-                evaluationText.innerHTML = "🎉 Tuyệt vời! Bạn có một nền tảng HSK2 rất vững chắc.";
-                evaluationText.style.color = "green";
-            } else if (totalScore >= 72) {
-                evaluationText.innerHTML = "👍 Đạt yêu cầu! Bạn đã vượt qua mức điểm chuẩn (60%).";
-                evaluationText.style.color = "#16a085";
-            } else {
-                evaluationText.innerHTML = "📚 Bạn cần cố gắng ôn tập thêm từ vựng và ngữ pháp nhé.";
-                evaluationText.style.color = "red";
-            }
-
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-    </script>
-</body>
-</html>
+                    <label class="option-label"><input type="radio" name="q
